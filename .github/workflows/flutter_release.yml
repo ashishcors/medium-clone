@@ -1,0 +1,28 @@
+name: Flutter web CI
+
+on:
+  push:
+    branches: [ release ]
+
+jobs:
+  build:
+
+    runs-on: macos-latest
+
+    steps:
+    - uses: actions/checkout@v2
+      
+    - uses: subosito/flutter-action@v1
+      with:
+        channel: 'dev'
+    - run: flutter config --enable-web
+      
+    - run: flutter pub get
+    - run: flutter build web
+      
+    - name: Commit files
+      run: |
+        git config --local user.email "ashishsumancse@gmail.com"
+        git config --local user.name "ashishsumann"
+        git add build/web && git commit -m "Commit release build CI"
+        git push origin `git subtree split --prefix build/web release`:gh-pages --force
