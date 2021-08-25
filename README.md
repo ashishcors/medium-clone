@@ -1,4 +1,4 @@
-# medium_clone
+# Medium Clone
 
 A new Flutter project.
 
