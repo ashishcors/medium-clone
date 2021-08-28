@@ -1,3 +1,5 @@
+import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:firebase_analytics/observer.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -9,14 +11,17 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final app = GetMaterialApp(
-        title: "Wizdom",
-        theme: AppTheme.dark,
-        getPages: AppPages.routes,
-        initialRoute: AppPages.initial,
-        translations: Str(),
-        locale: const Locale('hi', 'IN'),
-        fallbackLocale: const Locale('en', 'US'));
-    return app;
+    return GetMaterialApp(
+      title: "Wizdom",
+      theme: AppTheme.light,
+      getPages: AppPages.routes,
+      initialRoute: AppPages.initial,
+      translations: Str(),
+      locale: const Locale('en', 'US'),
+      fallbackLocale: const Locale('en', 'US'),
+      navigatorObservers: [
+        FirebaseAnalyticsObserver(analytics: FirebaseAnalytics()),
+      ],
+    );
   }
 }
