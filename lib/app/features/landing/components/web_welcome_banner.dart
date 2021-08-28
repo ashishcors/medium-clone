@@ -12,8 +12,9 @@ class WebWelcomeBanner extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.only(left: 180, right: 180, top: 24, bottom: 0),
       decoration: BoxDecoration(
-          color: ColorPalette.secondary,
-          border: const Border(bottom: BorderSide())),
+        color: ColorPalette.secondary,
+        border: const Border(bottom: BorderSide()),
+      ),
       child: Row(
         children: [
           Expanded(

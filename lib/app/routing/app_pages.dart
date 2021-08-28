@@ -10,7 +10,7 @@ part 'app_routes.dart';
 
 /// List all pages in the app with their proper bindings.
 class AppPages {
-  static const initial = Routes.SPLASH;
+  static const initial = Routes.LANDING;
 
   static final routes = [
     GetPage(

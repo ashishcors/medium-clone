@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:medium_clone/app/features/landing/web_welcome_banner.dart';
+import 'package:get/get.dart';
+import 'package:medium_clone/app/features/landing/components/trending_article_view.dart';
+import 'package:medium_clone/app/features/landing/components/web_welcome_banner.dart';
 import 'package:medium_clone/app/uikit/uikit.dart';
+import 'package:medium_clone/app/uikit/values/color_palette.dart';
 import 'package:medium_clone/app/uikit/widgets/app_logo.dart';
-import 'package:medium_clone/app/uikit/widgets/trending_article_view.dart';
 import 'package:medium_clone/app/uikit/widgets/wiz_button.dart';
 import 'package:medium_clone/data/dummy_data_utils.dart';
+import 'package:sliver_tools/sliver_tools.dart';
+
+import 'components/article_landing_screen_view.dart';
 
 class DesktopLandingPage extends StatefulWidget {
   const DesktopLandingPage({
@@ -44,11 +49,11 @@ class _DesktopLandingPageState extends State<DesktopLandingPage> {
             forceElevated: true,
             shape: const Border(bottom: BorderSide()),
             backgroundColor: _scrolledPastBanner
-                ? ColorPalette.white
+                ? ColorPalette.background
                 : ColorPalette.secondary,
             pinned: true,
             titleSpacing: 180,
-            title: const Expanded(child: AppLogo(showTitle: true, size: 24)),
+            title: const AppLogo(showTitle: true, size: 24),
             actions: [
               WizTextButton(
                 "Our story",
@@ -72,9 +77,9 @@ class _DesktopLandingPageState extends State<DesktopLandingPage> {
                 color: _scrolledPastBanner
                     ? ColorPalette.green
                     : ColorPalette.primary,
-                textColor: _scrolledPastBanner
+                textColor: _scrolledPastBanner || !Get.isDarkMode
                     ? ColorPalette.white
-                    : ColorPalette.textPrimary,
+                    : ColorPalette.black,
               ),
               const SizedBox(width: 180),
             ],
@@ -109,6 +114,117 @@ class _DesktopLandingPageState extends State<DesktopLandingPage> {
                   crossAxisCount: 3, childAspectRatio: 3, crossAxisSpacing: 24),
             ),
           ),
+          const SliverToBoxAdapter(child: Divider()),
+          // Couldn't find a way to have SliverRow hence using this hack. Using
+          // stack with paddings to that items appear to be in row
+          // TODO: figure out SliverRow
+          SliverStack(
+            children: [
+              SliverPadding(
+                padding: EdgeInsets.only(left: 180, right: (Get.width * 0.45)),
+                sliver: SliverList(
+                  delegate: SliverChildListDelegate.fixed(
+                    (DummyDataUtils.trendingArticles +
+                            DummyDataUtils.trendingArticles)
+                        .map(
+                          (e) => Padding(
+                            padding: const EdgeInsets.only(bottom: 16.0),
+                            child: ArticleLandingScreenView(article: e),
+                          ),
+                        )
+                        .toList(),
+                  ),
+                ),
+              ),
+              SliverPadding(
+                padding: EdgeInsets.only(left: (Get.width * 0.55), right: 180),
+                sliver: const LandingAdditionalInfoView(),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class LandingAdditionalInfoView extends StatelessWidget {
+  const LandingAdditionalInfoView({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final child = _buildChild();
+    return SliverPinnedHeader(child: child);
+  }
+
+  Widget _buildChild() {
+    return Padding(
+      padding: const EdgeInsets.only(right: 48, left: 72),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const SizedBox(height: 100),
+          Text(
+            "DISCOVER MORE OF WHAT MATTERS TO YOU",
+            style: Styles.caption?.copyWith(fontWeight: FontWeight.bold),
+          ),
+          const SizedBox(height: 16),
+          Wrap(
+            children: [
+              "Self",
+              "Relationships",
+              "Data Science",
+              "Programming",
+              "Productivity",
+              "Javascript",
+              "Machine Learning",
+              "Politics",
+              "Health",
+            ]
+                .map(
+                  (e) => Container(
+                    child: Text(
+                      e,
+                      style: Styles.caption,
+                    ),
+                    decoration: BoxDecoration(
+                      border:
+                          Border.all(color: ColorPalette.primary.withAlpha(50)),
+                      borderRadius: BorderRadius.circular(4),
+                    ),
+                    padding: const EdgeInsets.all(8.0),
+                  ),
+                )
+                .toList(),
+            spacing: 8.0,
+            runSpacing: 8.0,
+          ),
+          const SizedBox(height: 16),
+          Text(
+            "See all topics",
+            style: Styles.subtitle1?.copyWith(
+              color: ColorPalette.green,
+            ),
+          ),
+          const SizedBox(height: 16),
+          const Divider(),
+          const SizedBox(height: 16),
+          Wrap(
+            children: [
+              "Help",
+              "Status",
+              "Writers",
+              "Blog",
+              "Careers",
+              "Privacy",
+              "Terms",
+              "About",
+            ].map((e) => Text(e)).toList(),
+            spacing: 16.0,
+            runSpacing: 8.0,
+          )
         ],
       ),
     );

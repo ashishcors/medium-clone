@@ -8,7 +8,9 @@ class Article {
   final Community? community;
   final String title;
   final String? subtitle;
+  final String bannerImageUrl;
   final String content;
+  final List<String> topics;
   final DateTime publishedOn;
   final int length;
 
@@ -20,6 +22,8 @@ class Article {
     required this.title,
     required this.subtitle,
     required this.content,
+    required this.bannerImageUrl,
+    required this.topics,
     required this.publishedOn,
     required this.length,
   });

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 /// All static styles goes here.
+/// TODO: Make all styles constant, could be lot more performant.
 abstract class Styles {
   static TextStyle? get headline1 => Get.textTheme.headline1;
 

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 /// All colors goes here.
+/// TODO: Make all colors constant, could be lot more performant.
 abstract class ColorPalette {
   static const primaryLight = Color(0xff191919);
   static const primaryLightVariant = black;
@@ -20,7 +21,9 @@ abstract class ColorPalette {
 
   static const white = Colors.white;
   static const black = Colors.black;
-  static const green = Color(0xff309756);
+  static const green = Color(0xff1A8917);
+
+  static Color get background => Get.isDarkMode ? primaryLight : white;
 
   static Color get primary => Get.theme.colorScheme.primary;
 

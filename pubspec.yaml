@@ -38,6 +38,7 @@ dependencies:
   flutter_quill: ^1.9.4
   font_awesome_flutter: ^9.1.0
   intl: ^0.17.0
+  sliver_tools: ^0.2.5
 
 
   # The following adds the Cupertino Icons font to your application.
