@@ -1,4 +1,6 @@
 import 'package:get/get.dart';
+import 'package:medium_clone/app/features/auth/landing/authdialog/auth_dialog.dart';
+import 'package:medium_clone/app/features/auth/landing/authdialog/auth_dialog_controller.dart';
 
 import 'app_pages.dart';
 
@@ -35,5 +37,14 @@ abstract class Navik {
 
   static void toCreateAccount() {
     Get.toNamed(Routes.CREATE_ACCOUNT);
+  }
+
+  static void authDialog(AuthDialogEntryPoint entryPoint) {
+    Get.put(AuthDialogController());
+    Get.dialog(
+      AuthDialog(entryPoint),
+      arguments: entryPoint.index,
+      useSafeArea: true,
+    );
   }
 }

@@ -5,11 +5,22 @@ import 'package:medium_clone/app/features/auth/landing/authdialog/auth_dialog_co
 import 'package:medium_clone/app/routing/navik.dart';
 import 'package:medium_clone/app/uikit/uikit.dart';
 
+enum AuthDialogEntryPoint {
+  getStarted,
+  signIn,
+  startWriting,
+  bookmarkArticle,
+}
+
 class AuthDialog extends GetView<AuthDialogController> {
-  const AuthDialog({Key? key}) : super(key: key);
+  // TODO: for some reason we are unable to pass argument to dialog, hence using this. Fix this
+  final AuthDialogEntryPoint entryPoint;
+
+  const AuthDialog(this.entryPoint, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    controller.setInitialPage(entryPoint);
     return AuthDialogContainer(
       child: Obx(
         () => controller.currentPage.value,

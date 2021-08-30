@@ -6,11 +6,17 @@ import 'package:medium_clone/app/features/auth/landing/authdialog/auth_dialog_co
 import 'package:medium_clone/app/uikit/uikit.dart';
 import 'package:medium_clone/app/uikit/widgets/wiz_button.dart';
 
-class DesktopCreateAccountLandingPage
-    extends GetView<AuthDialogController> {
+class DesktopCreateAccountLandingPage extends GetView<AuthDialogController> {
   static const double _buttonWidth = 220;
 
-  const DesktopCreateAccountLandingPage({Key? key}) : super(key: key);
+  final String? customTitle;
+  final String? customSubtitle;
+
+  const DesktopCreateAccountLandingPage({
+    Key? key,
+    this.customTitle,
+    this.customSubtitle,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,11 +26,20 @@ class DesktopCreateAccountLandingPage
         children: [
           const Spacer(flex: 3),
           Text(
-            "join_wizdom".tr,
+            customTitle ?? "join_wizdom".tr,
             style: Styles.headline5?.copyWith(
               color: ColorPalette.textSecondary,
             ),
           ),
+          if (customSubtitle != null) const Spacer(flex: 2),
+          if (customSubtitle != null)
+            Text(
+              customSubtitle!,
+              style: Styles.subtitle2?.copyWith(
+                color: ColorPalette.textSecondary,
+              ),
+              textAlign: TextAlign.center,
+            ),
           const Spacer(flex: 2),
           LoginButton(
             icon: FontAwesomeIcons.google,

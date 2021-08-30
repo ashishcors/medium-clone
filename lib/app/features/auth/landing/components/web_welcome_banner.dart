@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:medium_clone/app/features/auth/landing/authdialog/auth_dialog.dart';
+import 'package:medium_clone/app/routing/navik.dart';
 import 'package:medium_clone/app/uikit/uikit.dart';
 import 'package:medium_clone/app/uikit/widgets/wiz_button.dart';
 
@@ -38,7 +40,9 @@ class WebWelcomeBanner extends StatelessWidget {
                   color: ColorPalette.white,
                   textColor: ColorPalette.black,
                   borderColor: ColorPalette.black,
-                  onPressed: () {},
+                  onPressed: () {
+                    Navik.authDialog(AuthDialogEntryPoint.startWriting);
+                  },
                 ),
                 const SizedBox(height: 24),
               ],

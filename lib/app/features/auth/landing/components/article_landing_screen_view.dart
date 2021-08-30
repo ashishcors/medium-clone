@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:medium_clone/app/features/auth/landing/authdialog/auth_dialog.dart';
+import 'package:medium_clone/app/routing/navik.dart';
 import 'package:medium_clone/app/uikit/uikit.dart';
 import 'package:medium_clone/app/uikit/widgets/user_and_community_view.dart';
 import 'package:medium_clone/domain/model/article/article.dart';
@@ -67,7 +69,12 @@ class ArticleLandingScreenView extends StatelessWidget {
                     ),
                   ),
                   const Spacer(),
-                  const Icon(Icons.bookmark_add_outlined)
+                  IconButton(
+                    icon: const Icon(Icons.bookmark_add_outlined),
+                    onPressed: () {
+                      Navik.authDialog(AuthDialogEntryPoint.bookmarkArticle);
+                    },
+                  )
                 ],
               )
             ],

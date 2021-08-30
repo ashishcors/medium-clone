@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:medium_clone/app/features/auth/landing/authdialog/auth_dialog.dart';
 import 'package:medium_clone/app/features/auth/landing/components/trending_article_view.dart';
 import 'package:medium_clone/app/features/auth/landing/components/web_welcome_banner.dart';
+import 'package:medium_clone/app/routing/navik.dart';
 import 'package:medium_clone/app/uikit/uikit.dart';
 import 'package:medium_clone/app/uikit/values/color_palette.dart';
 import 'package:medium_clone/app/uikit/widgets/app_logo.dart';
@@ -12,7 +13,6 @@ import 'package:medium_clone/app/uikit/widgets/wiz_button.dart';
 import 'package:medium_clone/data/dummy_data_utils.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 
-import 'authdialog/auth_dialog_controller.dart';
 import 'components/article_landing_screen_view.dart';
 
 class DesktopLandingPage extends StatefulWidget {
@@ -83,7 +83,9 @@ class _DesktopLandingPageState extends State<DesktopLandingPage> {
                 alignment: Alignment.center,
                 child: WizTextButton(
                   "Sign In",
-                  onPressed: () {},
+                  onPressed: () {
+                    Navik.authDialog(AuthDialogEntryPoint.signIn);
+                  },
                 ),
               ),
               Align(
@@ -91,8 +93,7 @@ class _DesktopLandingPageState extends State<DesktopLandingPage> {
                 child: WizButton(
                   "Get started",
                   onPressed: () {
-                    Get.put(AuthDialogController());
-                    Get.dialog(const AuthDialog());
+                    Navik.authDialog(AuthDialogEntryPoint.getStarted);
                   },
                   color: _scrolledPastBanner
                       ? ColorPalette.green
