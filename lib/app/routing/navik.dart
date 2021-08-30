@@ -25,5 +25,15 @@ abstract class Navik {
     }
   }
 
-  static void toLogin() {}
+  static void toLogin() {
+    Get.toNamed(Routes.LOGIN);
+  }
+
+  static void toLoginLanding() {
+    Get.toNamed(Routes.LOGIN_LANDING);
+  }
+
+  static void toCreateAccount() {
+    Get.toNamed(Routes.CREATE_ACCOUNT);
+  }
 }

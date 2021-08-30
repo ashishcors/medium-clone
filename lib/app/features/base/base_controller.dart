@@ -19,12 +19,13 @@ abstract class BaseController extends GetxController {
   }
 
   /// Indicates whether this screen required authentication.
-  bool authenticationRequired() => true;
+  bool isAuthenticationRequired() => true;
 
   @override
   void onInit() {
     super.onInit();
-    if (authenticationRequired() && !_userSession.isLoggedIn()) {
+    logger.d("Is Logged in", _userSession.isLoggedIn());
+    if (isAuthenticationRequired() && !_userSession.isLoggedIn()) {
       Future.delayed(Duration.zero, () async {
         Navik.toLanding(clearCurrent: true);
       });

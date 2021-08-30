@@ -22,6 +22,7 @@ abstract class ColorPalette {
   static const white = Colors.white;
   static const black = Colors.black;
   static const green = Color(0xff1A8917);
+  static const red = Color(0xffeb4335);
 
   static Color get background => Get.isDarkMode ? primaryLight : white;
 

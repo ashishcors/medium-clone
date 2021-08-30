@@ -1,17 +1,13 @@
 /// All know exceptions must be wrapper around this.
 class ApiException implements Exception {
-  final List<String> messages;
-  final int errorCode;
-
-  final String message;
+  final Object? error;
 
   final StackTrace? stack;
 
-  ApiException(this.messages, this.errorCode, [this.stack])
-      : message = messages.map((e) => e.endsWith(".") ? e : "$e.").join(" ");
+  ApiException(this.error, [this.stack]);
 
   @override
   String toString() {
-    return message;
+    return error.toString();
   }
 }

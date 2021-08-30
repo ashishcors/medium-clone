@@ -1,79 +1,58 @@
 /// A wrapper to get result safely.
 ///
-/// The data is received as [Success] and error is received as [Failure].
-abstract class SafeResult<T> {
-  const SafeResult();
+/// The data is received as [SafeResult.success] and error is received as [SafeResult.failure].
+class SafeResult<T> {
+  SafeResult._();
+
+  factory SafeResult.success(T data) = _Success;
+
+  factory SafeResult.failure(Exception exception) = _Failure;
 
   /// A conditional expression on [SafeResult]. Similar to kotlin `when`.
-  B when<B>(
-    B Function(T value, [String? message]) onSuccess,
-    B Function(Exception exception) onFailure,
-  );
+  B when<B>({
+    required B Function(T value) success,
+    required B Function(Exception exception) error,
+  }) {
+    if (this is _Success) {
+      return success((this as _Success).data);
+    } else if (this is _Failure) {
+      return error((this as _Failure).exception);
+    } else {
+      throw "Unreachable state.";
+    }
+  }
 
   /// Similar to [when]. No `onFailure` param required.
-  /// Returns [Failure] on failure.
+  /// Returns [SafeResult.failure] on failure.
   /// Use only when return type is [SafeResult<T>].
-  SafeResult<B> fold<B>(
-      SafeResult<B> Function(T value, [String? message]) onSuccess);
+  SafeResult<B> fold<B>(SafeResult<B> Function(T value) onSuccess) {
+    if (this is _Failure) {
+      return SafeResult.failure((this as _Failure).exception);
+    } else {
+      return onSuccess((this as _Success).data);
+    }
+  }
 
   /// Same as [fold] just takes a future and returns a future.
   Future<SafeResult<B>> foldAsync<B>(
-    Future<SafeResult<B>> Function(T value, [String? message]) onSuccess,
-  );
+    Future<SafeResult<B>> Function(T value) onSuccess,
+  ) async {
+    if (this is _Failure) {
+      return SafeResult.failure((this as _Failure).exception);
+    } else {
+      return onSuccess((this as _Success).data);
+    }
+  }
 }
 
-/// Success result wrapper.
-class Success<T> extends SafeResult<T> {
-  final T value;
-  final String? message;
+class _Success<T> extends SafeResult<T> {
+  final T data;
 
-  Success(this.value, [this.message]);
-
-  @override
-  B when<B>(
-    B Function(T value, [String? message]) onSuccess,
-    B Function(Exception exception) onFailure,
-  ) =>
-      onSuccess(value, message);
-
-  @override
-  SafeResult<B> fold<B>(
-    SafeResult<B> Function(T value, [String? message]) onSuccess,
-  ) =>
-      onSuccess(value, message);
-
-  @override
-  Future<SafeResult<B>> foldAsync<B>(
-    Future<SafeResult<B>> Function(T value, [String? message]) onSuccess,
-  ) =>
-      onSuccess(value, message);
+  _Success(this.data) : super._();
 }
 
-/// Failure result/exception wrapper.
-class Failure<T> extends SafeResult<T> {
+class _Failure<T> extends SafeResult<T> {
   final Exception exception;
 
-  Failure(Object object)
-      : exception = (object is Exception)
-            ? object
-            : Exception('An unknown error occurred.');
-
-  @override
-  B when<B>(
-    B Function(T value) onSuccess,
-    B Function(Exception exception) onFailure,
-  ) =>
-      onFailure(exception);
-
-  @override
-  SafeResult<B> fold<B>(
-    SafeResult<B> Function(T value, [String? message]) onSuccess,
-  ) =>
-      Failure(exception);
-
-  @override
-  Future<SafeResult<B>> foldAsync<B>(
-    Future<SafeResult<B>> Function(T value, [String? message]) onSuccess,
-  ) =>
-      Future.value(Failure(exception));
+  _Failure(this.exception) : super._();
 }

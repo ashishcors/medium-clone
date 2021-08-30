@@ -8,7 +8,7 @@ class SplashController extends BaseController {
   SplashController(this._currentUserUseCase);
 
   @override
-  bool authenticationRequired() => false;
+  bool isAuthenticationRequired() => false;
 
   @override
   void onInit() {
@@ -18,13 +18,10 @@ class SplashController extends BaseController {
 
   Future<void> _checkLoggedInUser() async {
     final result = await _currentUserUseCase(null, true);
-    result.when(
-      (value, [message]) {
-        Navik.toHome(clearCurrent: true);
-      },
-      (exception) {
-        Navik.toLanding(clearCurrent: true);
-      },
-    );
+    result.when(success: (value) {
+      Navik.toHome(clearCurrent: true);
+    }, error: (exception) {
+      Navik.toLanding(clearCurrent: true);
+    });
   }
 }

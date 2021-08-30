@@ -12,13 +12,11 @@ import 'package:medium_clone/domain/usecase/user/get_current_user_use_case.dart'
 /// TODO: find ways to better organize this.
 abstract class AppBindings {
   static Future<void> init() async {
-    _appModule();
     _repositoryModule();
     _globalUseCaseModule();
-  }
 
-  static void _appModule() {
-    Get.put<UserSession>(UserSession());
+    // User session
+    Get.put<UserSession>(UserSession(Get.find()));
   }
 
   static _repositoryModule() {

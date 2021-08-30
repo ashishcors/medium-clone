@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:medium_clone/app/features/landing/components/trending_article_view.dart';
-import 'package:medium_clone/app/features/landing/components/web_welcome_banner.dart';
+import 'package:medium_clone/app/features/auth/landing/authdialog/auth_dialog.dart';
+import 'package:medium_clone/app/features/auth/landing/components/trending_article_view.dart';
+import 'package:medium_clone/app/features/auth/landing/components/web_welcome_banner.dart';
 import 'package:medium_clone/app/uikit/uikit.dart';
 import 'package:medium_clone/app/uikit/values/color_palette.dart';
 import 'package:medium_clone/app/uikit/widgets/app_logo.dart';
@@ -10,6 +12,7 @@ import 'package:medium_clone/app/uikit/widgets/wiz_button.dart';
 import 'package:medium_clone/data/dummy_data_utils.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 
+import 'authdialog/auth_dialog_controller.dart';
 import 'components/article_landing_screen_view.dart';
 
 class DesktopLandingPage extends StatefulWidget {
@@ -55,31 +58,49 @@ class _DesktopLandingPageState extends State<DesktopLandingPage> {
             titleSpacing: 180,
             title: const AppLogo(showTitle: true, size: 24),
             actions: [
-              WizTextButton(
-                "Our story",
-                onPressed: () {},
+              Align(
+                alignment: Alignment.center,
+                child: WizTextButton(
+                  "Our story",
+                  onPressed: () {},
+                ),
               ),
-              WizTextButton(
-                "Membership",
-                onPressed: () {},
+              Align(
+                alignment: Alignment.center,
+                child: WizTextButton(
+                  "Membership",
+                  onPressed: () {},
+                ),
               ),
-              WizTextButton(
-                "Write",
-                onPressed: () {},
+              Align(
+                alignment: Alignment.center,
+                child: WizTextButton(
+                  "Write",
+                  onPressed: () {},
+                ),
               ),
-              WizTextButton(
-                "Sign In",
-                onPressed: () {},
+              Align(
+                alignment: Alignment.center,
+                child: WizTextButton(
+                  "Sign In",
+                  onPressed: () {},
+                ),
               ),
-              WizButton(
-                "Sign In",
-                onPressed: () {},
-                color: _scrolledPastBanner
-                    ? ColorPalette.green
-                    : ColorPalette.primary,
-                textColor: _scrolledPastBanner || !Get.isDarkMode
-                    ? ColorPalette.white
-                    : ColorPalette.black,
+              Align(
+                alignment: Alignment.center,
+                child: WizButton(
+                  "Get started",
+                  onPressed: () {
+                    Get.put(AuthDialogController());
+                    Get.dialog(const AuthDialog());
+                  },
+                  color: _scrolledPastBanner
+                      ? ColorPalette.green
+                      : ColorPalette.primary,
+                  textColor: _scrolledPastBanner || !Get.isDarkMode
+                      ? ColorPalette.white
+                      : ColorPalette.black,
+                ),
               ),
               const SizedBox(width: 180),
             ],

@@ -1,6 +1,8 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get_utils/src/extensions/internacionalization.dart';
+import 'package:medium_clone/app/routing/navik.dart';
 import 'package:medium_clone/app/uikit/uikit.dart';
 import 'package:medium_clone/app/uikit/widgets/app_logo.dart';
 import 'package:medium_clone/app/uikit/widgets/wiz_button.dart';
@@ -16,7 +18,7 @@ class MobileLandingPage extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 48),
           width: double.infinity,
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               const AppLogo(size: 40, showTitle: true),
               const SizedBox(height: 72),
@@ -27,22 +29,24 @@ class MobileLandingPage extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 48),
-              LoginButton(
+              MobileLoginButton(
                 icon: FontAwesomeIcons.google,
                 text: "sign_up_with_google".tr,
                 onTap: () {},
               ),
               const SizedBox(height: 12),
-              LoginButton(
+              MobileLoginButton(
                 icon: FontAwesomeIcons.facebook,
                 text: "sign_up_with_facebook".tr,
                 onTap: () {},
               ),
               const SizedBox(height: 12),
-              LoginButton(
+              MobileLoginButton(
                 icon: FontAwesomeIcons.envelope,
                 text: "sign_up_with_email".tr,
-                onTap: () {},
+                onTap: () {
+                  Navik.toCreateAccount();
+                },
               ),
               const SizedBox(height: 24),
               RichText(
@@ -53,10 +57,13 @@ class MobileLandingPage extends StatelessWidget {
                 ),
                 children: [
                   TextSpan(
-                      text: "Sign in.",
-                      style: Styles.bodyText2?.copyWith(
-                        color: ColorPalette.green,
-                      ))
+                    text: "Sign in.",
+                    style: Styles.bodyText2?.copyWith(
+                      color: ColorPalette.green,
+                    ),
+                    recognizer: TapGestureRecognizer()
+                      ..onTap = Navik.toLoginLanding,
+                  )
                 ],
               )),
               Expanded(

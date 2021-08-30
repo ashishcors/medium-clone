@@ -1,4 +1,10 @@
+import 'package:medium_clone/domain/repository/auth_repository.dart';
+
 /// Maintains current user session.
 class UserSession {
-  bool isLoggedIn() => false;
+  final AuthRepository _authRepository;
+
+  UserSession(this._authRepository);
+
+  bool isLoggedIn() => _authRepository.isUserLoggedIn();
 }

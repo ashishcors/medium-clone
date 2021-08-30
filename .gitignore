@@ -49,3 +49,5 @@ app.*.map.json
 # Firebase config
 /android/app/google-services.json
 /web/firebase-config.js
+.firebaserc
+firebase.json
