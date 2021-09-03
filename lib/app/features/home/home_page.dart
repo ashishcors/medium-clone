@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:medium_clone/app/features/home/desktop_home_page.dart';
-import 'package:medium_clone/app/features/home/mobile_home_page.dart';
+import 'package:medium_clone/app/features/home/desktop/desktop_home_controller.dart';
+import 'package:medium_clone/app/features/home/desktop/desktop_home_page.dart';
+import 'package:medium_clone/app/features/home/mobiletabs/mobile_home_page.dart';
 import 'package:medium_clone/app/uikit/widgets/responsive.dart';
 
 import 'home_controller.dart';
@@ -11,9 +12,13 @@ class HomePage extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
-    return const Responsive(
-      mobile: MobileHomePage(),
-      desktop: DesktopHomePage(),
+    if (Responsive.isDesktop(context)) {
+      Get.put(DesktopHomeController());
+    }
+
+    return Responsive(
+      mobile: MobileHomePage(controller: controller),
+      desktop: const DesktopHomePage(),
     );
   }
 }

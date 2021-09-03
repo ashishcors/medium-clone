@@ -10,6 +10,21 @@ abstract class BaseController extends GetxController {
 
   final _userSession = Get.find<UserSession>();
 
+  /// Get current logged in user.
+  /// Note: this should only be used by UI, if user is logged out, they will be navigated to login screen.
+  User get currentUser => _getCurrentUser();
+
+  bool get isUserLoggedIn => _userSession.isLoggedIn();
+
+  User _getCurrentUser() {
+    if (_userSession.isLoggedIn()) {
+      return _userSession.currentUser!;
+    } else {
+      logout();
+      throw "Logged out";
+    }
+  }
+
   /// Logs out user.
   Future<void> logout() async {
     await _logoutUseCase(null);

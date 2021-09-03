@@ -3,17 +3,18 @@ import 'package:flutter/painting.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:medium_clone/app/features/auth/landing/authdialog/auth_dialog.dart';
+import 'package:medium_clone/app/features/auth/landing/components/article_item_view.dart';
 import 'package:medium_clone/app/features/auth/landing/components/trending_article_view.dart';
 import 'package:medium_clone/app/features/auth/landing/components/web_welcome_banner.dart';
 import 'package:medium_clone/app/routing/navik.dart';
 import 'package:medium_clone/app/uikit/uikit.dart';
 import 'package:medium_clone/app/uikit/values/color_palette.dart';
 import 'package:medium_clone/app/uikit/widgets/app_logo.dart';
+import 'package:medium_clone/app/uikit/widgets/section_header_view.dart';
+import 'package:medium_clone/app/uikit/widgets/sliver_row.dart';
 import 'package:medium_clone/app/uikit/widgets/wiz_button.dart';
 import 'package:medium_clone/data/dummy_data_utils.dart';
 import 'package:sliver_tools/sliver_tools.dart';
-
-import 'components/article_landing_screen_view.dart';
 
 class DesktopLandingPage extends StatefulWidget {
   const DesktopLandingPage({
@@ -107,19 +108,13 @@ class _DesktopLandingPageState extends State<DesktopLandingPage> {
             ],
           ),
           const SliverToBoxAdapter(child: WebWelcomeBanner()),
-          SliverPadding(
-            padding: const EdgeInsets.only(
-                left: 180, right: 180, top: 36, bottom: 16),
+          const SliverPadding(
+            padding:
+                EdgeInsets.only(left: 180, right: 180, top: 36, bottom: 16),
             sliver: SliverToBoxAdapter(
-                child: Row(
-              children: [
-                const Icon(FontAwesomeIcons.chartLine),
-                const SizedBox(width: 8),
-                Text(
-                  "TRENDING ON WIZDOM",
-                  style: Styles.caption?.copyWith(fontWeight: FontWeight.bold),
-                )
-              ],
+                child: SectionHeaderView(
+              title: "TRENDING ON WIZDOM",
+              icon: FontAwesomeIcons.chartLine,
             )),
           ),
           SliverPadding(
@@ -137,13 +132,11 @@ class _DesktopLandingPageState extends State<DesktopLandingPage> {
             ),
           ),
           const SliverToBoxAdapter(child: Divider()),
-          // Couldn't find a way to have SliverRow hence using this hack. Using
-          // stack with paddings to that items appear to be in row
-          // TODO: figure out SliverRow
-          SliverStack(
-            children: [
-              SliverPadding(
-                padding: EdgeInsets.only(left: 180, right: (Get.width * 0.45)),
+          SliverRow(
+            horizontalPadding: 180,
+            sliverRowItems: [
+              SliverRowItem(
+                flex: 11,
                 sliver: SliverList(
                   delegate: SliverChildListDelegate.fixed(
                     (DummyDataUtils.trendingArticles +
@@ -151,16 +144,16 @@ class _DesktopLandingPageState extends State<DesktopLandingPage> {
                         .map(
                           (e) => Padding(
                             padding: const EdgeInsets.only(bottom: 16.0),
-                            child: ArticleLandingScreenView(article: e),
+                            child: ArticleItemView(article: e),
                           ),
                         )
                         .toList(),
                   ),
                 ),
               ),
-              SliverPadding(
-                padding: EdgeInsets.only(left: (Get.width * 0.55), right: 180),
-                sliver: const LandingAdditionalInfoView(),
+              SliverRowItem(
+                flex: 9,
+                sliver: const _LandingRightPaneView(),
               ),
             ],
           ),
@@ -170,8 +163,8 @@ class _DesktopLandingPageState extends State<DesktopLandingPage> {
   }
 }
 
-class LandingAdditionalInfoView extends StatelessWidget {
-  const LandingAdditionalInfoView({
+class _LandingRightPaneView extends StatelessWidget {
+  const _LandingRightPaneView({
     Key? key,
   }) : super(key: key);
 
@@ -188,9 +181,8 @@ class LandingAdditionalInfoView extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: 100),
-          Text(
-            "DISCOVER MORE OF WHAT MATTERS TO YOU",
-            style: Styles.caption?.copyWith(fontWeight: FontWeight.bold),
+          const SectionHeaderView(
+            title: "DISCOVER MORE OF WHAT MATTERS TO YOU",
           ),
           const SizedBox(height: 16),
           Wrap(

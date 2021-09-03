@@ -1,8 +1,9 @@
 import 'package:get/get.dart';
+import 'package:medium_clone/app/features/home/home_controller.dart';
 
 class HomeBindings extends Bindings {
   @override
   void dependencies() {
-    // TODO: implement dependencies
+    Get.put(HomeController());
   }
 }

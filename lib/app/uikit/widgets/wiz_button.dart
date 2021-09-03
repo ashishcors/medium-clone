@@ -22,15 +22,19 @@ class WizButton extends StatelessWidget {
   final Color? color;
   final Color? textColor;
   final Color? borderColor;
+  final EdgeInsets containerPadding;
+  final double textSize;
 
   const WizButton(
     this.text, {
     Key? key,
-    required,
     required this.onPressed,
     this.color,
     this.textColor,
     this.borderColor,
+    this.containerPadding =
+        const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+    this.textSize = 14,
   }) : super(key: key);
 
   @override
@@ -38,7 +42,7 @@ class WizButton extends StatelessWidget {
     return InkWell(
       onTap: onPressed,
       child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+        padding: containerPadding,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(50),
           border:
@@ -49,6 +53,7 @@ class WizButton extends StatelessWidget {
           text,
           style: Styles.button?.copyWith(
             color: textColor ?? ColorPalette.white,
+            fontSize: textSize,
           ),
           textAlign: TextAlign.center,
         ),

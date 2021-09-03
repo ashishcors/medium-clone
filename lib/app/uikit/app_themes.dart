@@ -17,14 +17,6 @@ abstract class AppTheme {
     ),
   );
 
-  // .copyWith(
-  //   appBarTheme: AppBarTheme(
-  //     backgroundColor: ColorPalette.white,
-  //     iconTheme: IconThemeData(color: ColorPalette.black87),
-  //     actionsIconTheme: const IconThemeData(color: ColorPalette.white),
-  //   ),
-  // );
-
   static final dark = ThemeData.from(
     colorScheme: const ColorScheme.dark(
       primary: ColorPalette.primaryDark,
@@ -67,12 +59,12 @@ abstract class AppTheme {
       fontWeight: FontWeight.w500,
       letterSpacing: 0.15,
     ),
-    subtitle1: GoogleFonts.roboto(
+    subtitle1: GoogleFonts.nunito(
       fontSize: 17,
       fontWeight: FontWeight.w400,
       letterSpacing: 0.15,
     ),
-    subtitle2: GoogleFonts.roboto(
+    subtitle2: GoogleFonts.nunito(
       fontSize: 15,
       fontWeight: FontWeight.w500,
       letterSpacing: 0.1,

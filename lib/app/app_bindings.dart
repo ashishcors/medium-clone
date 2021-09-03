@@ -1,5 +1,6 @@
 import 'package:domain/domain.dart';
 import 'package:get/get.dart';
+import 'package:medium_clone/app/features/auth/landing/components/article_item_controller.dart';
 import 'package:medium_clone/data/repository/auth_repository_impl.dart';
 import 'package:medium_clone/data/repository/user_repository_impl.dart';
 
@@ -10,9 +11,10 @@ abstract class AppBindings {
   static Future<void> init() async {
     _repositoryModule();
     _globalUseCaseModule();
+    _globalControllerModule();
 
     // User session
-    Get.put<UserSession>(UserSession(Get.find()));
+    await Get.putAsync(() => UserSession.getInstance(Get.find()));
   }
 
   static _repositoryModule() {
@@ -30,6 +32,14 @@ abstract class AppBindings {
   static void _globalUseCaseModule() {
     Get.lazyPut<LogoutUseCase>(
       () => LogoutUseCase(),
+      fenix: true,
+    );
+  }
+
+  static void _globalControllerModule() {
+    // TODO: bad idea
+    Get.lazyPut<ArticleItemController>(
+      () => ArticleItemController(),
       fenix: true,
     );
   }
