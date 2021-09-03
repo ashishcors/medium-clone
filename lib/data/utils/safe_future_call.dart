@@ -1,4 +1,4 @@
-import 'package:medium_clone/domain/model/safe_result.dart';
+import 'package:domain/domain.dart';
 
 Future<SafeResult<T>> safeFutureCall<T>(Future<T> Function() block) async {
   try {

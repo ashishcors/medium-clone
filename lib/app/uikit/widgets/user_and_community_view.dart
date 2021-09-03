@@ -1,8 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:medium_clone/app/uikit/uikit.dart';
-import 'package:medium_clone/domain/model/community/community.dart';
-import 'package:medium_clone/domain/model/user/user.dart';
 
 /// View to display user name & community name (optional) with appropriate avatar.
 class UserAndCommunityView extends StatelessWidget {

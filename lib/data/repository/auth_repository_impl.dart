@@ -1,11 +1,9 @@
+import 'package:domain/domain.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:medium_clone/app/routing/app_pages.dart';
 import 'package:medium_clone/data/config.dart';
 import 'package:medium_clone/data/utils/safe_future_call.dart';
-import 'package:medium_clone/domain/exception/unauthorized_exception.dart';
-import 'package:medium_clone/domain/model/safe_result.dart';
-import 'package:medium_clone/domain/repository/auth_repository.dart';
 
 class AuthRepositoryImpl extends AuthRepository {
   final _auth = FirebaseAuth.instance;

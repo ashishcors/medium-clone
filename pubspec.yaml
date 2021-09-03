@@ -29,6 +29,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+
+  domain:
+    path: ./domain
+
   get: ^4.1.4
   logger: ^1.0.0
   google_fonts: ^2.1.0

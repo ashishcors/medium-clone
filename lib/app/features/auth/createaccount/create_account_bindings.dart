@@ -1,7 +1,6 @@
+import 'package:domain/domain.dart';
 import 'package:get/get.dart';
 import 'package:medium_clone/data/dynamic_link_helper.dart';
-import 'package:medium_clone/domain/usecase/auth/signup/send_sign_up_magic_link_usecase.dart';
-import 'package:medium_clone/domain/usecase/auth/signup/verify_sign_up_with_magic_link_use_case.dart';
 
 import 'create_account_controller.dart';
 

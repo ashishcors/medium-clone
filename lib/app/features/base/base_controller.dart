@@ -1,9 +1,8 @@
+import 'package:domain/domain.dart';
 import 'package:get/get.dart';
 import 'package:get/get_connect/http/src/exceptions/exceptions.dart';
 import 'package:medium_clone/app/routing/navik.dart';
 import 'package:medium_clone/data/user_session.dart';
-import 'package:medium_clone/domain/exception/api_exception.dart';
-import 'package:medium_clone/domain/usecase/auth/logout_use_case.dart';
 import 'package:medium_clone/main.dart';
 
 /// BaseController for all Views, have some basic common functionalities.

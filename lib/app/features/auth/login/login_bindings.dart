@@ -1,7 +1,6 @@
+import 'package:domain/domain.dart';
 import 'package:get/get.dart';
 import 'package:medium_clone/data/dynamic_link_helper.dart';
-import 'package:medium_clone/domain/usecase/auth/login/send_login_magic_link_use_case.dart';
-import 'package:medium_clone/domain/usecase/auth/login/verify_login_magic_link_use_case.dart';
 
 import 'login_controller.dart';
 

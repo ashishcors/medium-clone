@@ -1,11 +1,10 @@
+import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:medium_clone/app/features/base/base_controller.dart';
 import 'package:medium_clone/app/features/base/view_state.dart';
 import 'package:medium_clone/app/routing/navik.dart';
 import 'package:medium_clone/data/dynamic_link_helper.dart';
-import 'package:medium_clone/domain/usecase/auth/signup/send_sign_up_magic_link_usecase.dart';
-import 'package:medium_clone/domain/usecase/auth/signup/verify_sign_up_with_magic_link_use_case.dart';
 
 class CreateAccountController extends BaseController {
   final SendSignUpMagicLinkUseCase _sendSignUpMagicLinkUseCase;

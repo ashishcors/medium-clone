@@ -1,11 +1,8 @@
+import 'package:domain/domain.dart';
 import 'package:get/get.dart';
 import 'package:medium_clone/data/repository/auth_repository_impl.dart';
 import 'package:medium_clone/data/repository/user_repository_impl.dart';
 import 'package:medium_clone/data/user_session.dart';
-import 'package:medium_clone/domain/repository/auth_repository.dart';
-import 'package:medium_clone/domain/repository/user_repository.dart';
-import 'package:medium_clone/domain/usecase/auth/logout_use_case.dart';
-import 'package:medium_clone/domain/usecase/user/get_current_user_use_case.dart';
 
 /// All app level dependencies goes here.
 /// Consider this apps di folder.

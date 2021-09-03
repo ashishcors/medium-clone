@@ -1,11 +1,10 @@
+import 'package:domain/domain.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:medium_clone/app/features/base/base_controller.dart';
 import 'package:medium_clone/app/features/base/view_state.dart';
 import 'package:medium_clone/app/routing/navik.dart';
 import 'package:medium_clone/data/dynamic_link_helper.dart';
-import 'package:medium_clone/domain/usecase/auth/login/send_login_magic_link_use_case.dart';
-import 'package:medium_clone/domain/usecase/auth/login/verify_login_magic_link_use_case.dart';
 
 class LoginController extends BaseController {
   final SendLoginMagicLinkUseCase _sendLoginMagicLinkUseCase;

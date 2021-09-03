@@ -1,6 +1,4 @@
-import 'package:medium_clone/domain/model/article/article.dart';
-import 'package:medium_clone/domain/model/community/community.dart';
-import 'package:medium_clone/domain/model/user/user.dart';
+import 'package:domain/domain.dart';
 
 /// TODO: remove this when done.
 @Deprecated("App shouldn't use this, this is just for development.")

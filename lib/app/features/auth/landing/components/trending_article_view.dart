@@ -1,8 +1,8 @@
+import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:medium_clone/app/uikit/uikit.dart';
 import 'package:medium_clone/app/uikit/widgets/user_and_community_view.dart';
-import 'package:medium_clone/domain/model/article/article.dart';
 
 /// View for ranked trending article.
 class TrendingArticleView extends StatelessWidget {

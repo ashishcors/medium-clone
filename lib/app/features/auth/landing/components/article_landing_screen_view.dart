@@ -1,9 +1,9 @@
+import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 import 'package:medium_clone/app/features/auth/landing/authdialog/auth_dialog.dart';
 import 'package:medium_clone/app/routing/navik.dart';
 import 'package:medium_clone/app/uikit/uikit.dart';
 import 'package:medium_clone/app/uikit/widgets/user_and_community_view.dart';
-import 'package:medium_clone/domain/model/article/article.dart';
 
 class ArticleLandingScreenView extends StatelessWidget {
   final Article article;

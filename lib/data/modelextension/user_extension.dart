@@ -1,5 +1,5 @@
+import 'package:domain/domain.dart';
 import 'package:firebase_auth/firebase_auth.dart' as firebase;
-import 'package:medium_clone/domain/model/user/user.dart';
 
 extension FirebaseUserExtension on firebase.User {
   User toUser() {

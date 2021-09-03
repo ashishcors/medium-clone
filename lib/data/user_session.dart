@@ -1,4 +1,4 @@
-import 'package:medium_clone/domain/repository/auth_repository.dart';
+import 'package:domain/domain.dart';
 
 /// Maintains current user session.
 class UserSession {
