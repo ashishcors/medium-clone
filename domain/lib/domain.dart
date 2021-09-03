@@ -5,3 +5,4 @@ export 'src/exception.dart';
 export 'src/model.dart';
 export 'src/repository.dart';
 export 'src/use_case.dart';
+export 'src/user_session.dart';

@@ -23,14 +23,19 @@ class DeeplinkHelper {
       logger.e('onLinkError');
       logger.e(e.message);
     });
+  }
 
+  /// Function to retrieve app launch deeplink
+  Future<Uri?> getAppLaunchDeeplink() async {
     final PendingDynamicLinkData? data = await dynamicLinks.getInitialLink();
     final Uri? deepLink = data?.link;
 
     if (deepLink != null) {
       logger.i('Pending deeplink received.');
       logger.d(deepLink);
-      onLink(deepLink);
+      return deepLink;
+    } else {
+      return null;
     }
   }
 }

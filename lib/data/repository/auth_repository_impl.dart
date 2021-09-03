@@ -1,8 +1,9 @@
 import 'package:domain/domain.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart' hide User;
 import 'package:get_storage/get_storage.dart';
 import 'package:medium_clone/app/routing/app_pages.dart';
 import 'package:medium_clone/data/config.dart';
+import 'package:medium_clone/data/modelextension/user_extension.dart';
 import 'package:medium_clone/data/utils/safe_future_call.dart';
 
 class AuthRepositoryImpl extends AuthRepository {
@@ -125,5 +126,16 @@ class AuthRepositoryImpl extends AuthRepository {
   }
 
   @override
-  bool isUserLoggedIn() => _auth.currentUser != null;
+  Future<SafeResult<User>> getCurrentUser(bool refreshSession) async {
+    if (refreshSession) {
+      await _auth.currentUser?.reload();
+    }
+
+    final user = _auth.currentUser?.toUser();
+
+    if (user != null) {
+      return SafeResult.success(user);
+    }
+    return SafeResult.failure(UnAuthorizedException());
+  }
 }

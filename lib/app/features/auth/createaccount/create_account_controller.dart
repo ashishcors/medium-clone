@@ -59,7 +59,7 @@ class CreateAccountController extends BaseController {
       success: (value) {
         loginState.value = ViewState.success(email);
         _deeplinkHelper.addDynamicLinkListener(
-          (deeplink) => _verifySignUpDynamicLink(deeplink.path),
+          (deeplink) => _verifySignUpDynamicLink(deeplink.toString()),
         );
       },
       error: (exception) {

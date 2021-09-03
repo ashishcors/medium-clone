@@ -2,7 +2,6 @@ import 'package:domain/domain.dart';
 import 'package:get/get.dart';
 import 'package:medium_clone/data/repository/auth_repository_impl.dart';
 import 'package:medium_clone/data/repository/user_repository_impl.dart';
-import 'package:medium_clone/data/user_session.dart';
 
 /// All app level dependencies goes here.
 /// Consider this apps di folder.
@@ -31,11 +30,6 @@ abstract class AppBindings {
   static void _globalUseCaseModule() {
     Get.lazyPut<LogoutUseCase>(
       () => LogoutUseCase(),
-      fenix: true,
-    );
-
-    Get.lazyPut<GetCurrentUserUseCase>(
-      () => GetCurrentUserUseCase(Get.find()),
       fenix: true,
     );
   }

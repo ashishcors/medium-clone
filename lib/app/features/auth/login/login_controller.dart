@@ -47,7 +47,7 @@ class LoginController extends BaseController {
       success: (value) {
         loginState.value = ViewState.success(email);
         _deeplinkHelper.addDynamicLinkListener(
-          (deeplink) => _verifyLoginDeeplink(deeplink.path),
+          (deeplink) => _verifyLoginDeeplink(deeplink.toString()),
         );
       },
       error: (exception) {

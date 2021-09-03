@@ -9,5 +9,5 @@ abstract class AuthRepository {
 
   Future<SafeResult<void>> completeSignUpWithMagicLink(String signUpMagicLink);
 
-  bool isUserLoggedIn();
+  Future<SafeResult<User>> getCurrentUser(bool refreshSession);
 }

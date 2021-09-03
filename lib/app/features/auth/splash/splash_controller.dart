@@ -3,9 +3,9 @@ import 'package:medium_clone/app/features/base/base_controller.dart';
 import 'package:medium_clone/app/routing/navik.dart';
 
 class SplashController extends BaseController {
-  final GetCurrentUserUseCase _currentUserUseCase;
+  final UserSession _userSession;
 
-  SplashController(this._currentUserUseCase);
+  SplashController(this._userSession);
 
   @override
   bool isAuthenticationRequired() => false;
@@ -17,7 +17,7 @@ class SplashController extends BaseController {
   }
 
   Future<void> _checkLoggedInUser() async {
-    final result = await _currentUserUseCase(null, true);
+    final result = await _userSession.startSession();
     result.when(success: (value) {
       Navik.toHome(clearCurrent: true);
     }, error: (exception) {
