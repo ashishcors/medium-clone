@@ -21,7 +21,7 @@ class UserSession {
 
   /// Starts user session.
   /// Call when user signup or login.
-  Future<SafeResult<User>> startSession() async {
+  Future<SafeResult<User>> startSession() {
     return refreshSession();
   }
 

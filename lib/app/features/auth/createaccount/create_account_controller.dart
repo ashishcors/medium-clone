@@ -73,7 +73,8 @@ class CreateAccountController extends BaseController {
     final result = await _createAccountWithMagicLinkUseCase.call(path);
 
     result.when(
-      success: (data) {
+      success: (data) async {
+        await userSession.startSession();
         Navik.toHome(clearCurrent: true);
       },
       error: (exception) {

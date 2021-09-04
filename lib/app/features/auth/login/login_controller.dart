@@ -61,7 +61,8 @@ class LoginController extends BaseController {
     final result = await _verifyLoginMagicLinkUseCase.call(path);
 
     result.when(
-      success: (data) {
+      success: (data) async{
+        await userSession.startSession();
         Navik.toHome(clearCurrent: true);
       },
       error: (exception) {

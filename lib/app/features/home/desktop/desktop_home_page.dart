@@ -137,6 +137,7 @@ class _HomeRightPaneView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final child = _buildChild();
+    // TODO: make this SliverScrollingPinnedHeader
     return SliverPinnedHeader(child: child);
   }
 
@@ -233,7 +234,8 @@ class _HomeRightPaneView extends StatelessWidget {
           const Divider(),
           const SizedBox(height: 24),
           _sectionTitleText("Reading List"),
-          Text("Click the  on any story to easily add it to your reading list or a custom list that you can share."),
+          const Text(
+              "Click the  on any story to easily add it to your reading list or a custom list that you can share."),
           const SizedBox(height: 24),
           const Divider(),
           const SizedBox(height: 24),

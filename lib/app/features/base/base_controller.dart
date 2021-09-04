@@ -8,17 +8,17 @@ import 'package:medium_clone/main.dart';
 abstract class BaseController extends GetxController {
   final _logoutUseCase = Get.find<LogoutUseCase>();
 
-  final _userSession = Get.find<UserSession>();
+  final userSession = Get.find<UserSession>();
 
   /// Get current logged in user.
   /// Note: this should only be used by UI, if user is logged out, they will be navigated to login screen.
   User get currentUser => _getCurrentUser();
 
-  bool get isUserLoggedIn => _userSession.isLoggedIn();
+  bool get isUserLoggedIn => userSession.isLoggedIn();
 
   User _getCurrentUser() {
-    if (_userSession.isLoggedIn()) {
-      return _userSession.currentUser!;
+    if (userSession.isLoggedIn()) {
+      return userSession.currentUser!;
     } else {
       logout();
       throw "Logged out";
@@ -37,8 +37,8 @@ abstract class BaseController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    logger.d("Is Logged in", _userSession.isLoggedIn());
-    if (isAuthenticationRequired() && !_userSession.isLoggedIn()) {
+    logger.d("Is Logged in", userSession.isLoggedIn());
+    if (isAuthenticationRequired() && !userSession.isLoggedIn()) {
       Future.delayed(Duration.zero, () async {
         Navik.toLanding(clearCurrent: true);
       });
